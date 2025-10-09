@@ -557,7 +557,7 @@ to its growth and at the same time help me in my personal development.
                         <input type="hidden" name="_subject" value="New submission!">
                          <input type="hidden" name="_autoresponse" value="Thank you for your message!">
                        
-                          
+                          <div id="formMessage" style="margin-top:10px; font-weight:bold; display:none;"></div>
                       </div>
                     </div>
                   </div>
@@ -643,7 +643,53 @@ function sendMails() {
 }
 </script> -->
 
+       
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form[action="https://formsubmit.co/bosamiyavinay80@gmail.com"]');
+        const formMessage = document.getElementById('formMessage');
     
+        function showMessage(message, type) {
+            const colors = {
+                success: { light: '#d1fae5', dark: '#065f46', textLight: '#065f46', textDark: '#d1fae5' },
+                error: { light: '#fee2e2', dark: '#991b1b', textLight: '#991b1b', textDark: '#fee2e2' }
+            };
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const bgColor = isDark ? colors[type].dark : colors[type].light;
+            const textColor = isDark ? colors[type].textDark : colors[type].textLight;
+    
+            formMessage.style.backgroundColor = bgColor;
+            formMessage.style.color = textColor;
+            formMessage.style.padding = '10px';
+            formMessage.style.borderRadius = '5px';
+            formMessage.style.fontWeight = 'bold';
+            formMessage.style.display = 'block';
+            formMessage.innerText = message;
+    
+            setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+        }
+    
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+    
+            fetch('https://formsubmit.co/ajax/bosamiyavinay80@gmail.com', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text()) // use text() instead of json()
+            .then(data => {
+                showMessage("Email sent successfully!", "success");
+                form.reset();
+            })
+            .catch(err => {
+                showMessage("Error sending email.", "error");
+                console.error(err);
+            });
+        });
+    });
+    </script>
+
     
 </body>
 </html>
