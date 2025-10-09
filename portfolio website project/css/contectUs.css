@@ -94,7 +94,9 @@
 .contact .contact-form .btn
 {
     height: 50px; 
-    padding: 0 50px;
+    /* padding: 0 50px; */
+    padding: 0 30px;
+    margin: 4px 7px;
 }
 
 /* @media (max-width:1199px)
@@ -126,3 +128,4 @@
     
 
 }
+
