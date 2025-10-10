@@ -127,7 +127,8 @@
 }
 .about .about-content .timeline{
     background-color: var(--bg-black-100);
-    padding: 30px 15px;
+    /* padding: 30px 15px; */
+    padding: 70px 15px;
     border: 1px solid var(--bg-black-50);
     border-radius: 10px;
     width: 100%;
@@ -213,4 +214,5 @@
         max-width: 100%;
     }
     
+
 }
