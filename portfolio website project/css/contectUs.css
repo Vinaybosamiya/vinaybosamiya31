@@ -64,9 +64,7 @@
 }
 .contact .contact-form .form-item
 {
-    /* margin-bottom: 30px; */
-    margin-bottom: 15px;
-    
+    margin-bottom: 30px;
 }
 
 .contact .contact-form .form-item .form-control
@@ -94,11 +92,15 @@
 .contact .contact-form .btn
 {
     height: 50px; 
-    /* padding: 0 50px; */
-        padding: 0 50px;
-    margin: 15px 15px;
+    padding: 0 50px;
+    cursor: pointer;
 }
-
+#err-name,
+#err-email,
+#err-subject,
+#err-message{
+    display:none; font-size:13px; color: var(--skin-color); margin-top:4px;
+}
 /* @media (max-width:1199px)
 {
     
@@ -126,7 +128,4 @@
         max-width: 100%;
     }
     
-
 }
-
-
