@@ -385,4 +385,8 @@ Basis = box size starting point → 60%
         left: 270px;
      }
 }
- 
+
+ .github-icon{
+     height:30px;
+     width:30px
+ }
