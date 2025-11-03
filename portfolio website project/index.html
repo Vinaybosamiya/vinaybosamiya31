@@ -71,9 +71,12 @@
             <li>
               <a href="#contact"><i class="fa fa-comments"></i>Contact</a>
             </li>
-            <!-- <li>
-               <a href="#contact"><i class="fa fa-comments"></i>Contact</a>
-            </li> -->
+            <li>
+               <img src="../photos/github.jpg"
+                 alt="GitHub"
+                 class="github-icon"
+                 onclick="goToGitHub()">
+            </li>
           </ul>
         </div>
       </div>
@@ -743,12 +746,25 @@ function sendMails() {
         });
       })();
       </script>
- 
+  <script>
+
+    function goToGitHub(){
+    const psw = prompt("Enter Your Password For Go To GitHub:");
+      const mypsw = "@@@31/12/2006@@@"
+      if(psw === mypsw){
+      window.location.href ="https://github.com/vinayakbosamiya"
+      }
+      else if(psw !== null){
+        alert("Incorrect password!");
+      }
+    }
+  </script> 
 
      
   
 </body>
 </html>
+
 
 
 
