@@ -8,6 +8,13 @@
 
 
 }
+.github-icon{
+     height:30px;
+     width:30px;
+      cursor: pointer;
+ }
+
+
 body {
     overflow-y: scroll;
   }
