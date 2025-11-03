@@ -388,5 +388,7 @@ Basis = box size starting point → 60%
 
  .github-icon{
      height:30px;
-     width:30px
+     width:30px;
+      cursor: pointer;
  }
+
