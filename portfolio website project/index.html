@@ -25,18 +25,18 @@
     <link rel="stylesheet" href="../css/skin/color-1.css" />
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
 <!-- ====== style.css files ====== -->
-    <link rel="stylesheet" href="../css/sidebar.css" />
-    <link rel="stylesheet" href="../css/home.css" />
-    <link rel="stylesheet" href="../css/about.css" />
-    <link rel="stylesheet" href="../css/services.css" />
-    <link rel="stylesheet" href="../css/portfolio.css" />
-    <link rel="stylesheet" href="../css/contectUs.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/about.css" />
+    <link rel="stylesheet" href="./css/services.css" />
+    <link rel="stylesheet" href="./css/portfolio.css" />
+    <link rel="stylesheet" href="./css/contectUs.css" />
     <!-- ====== Style Switcher ====== -->
-    <link rel="stylesheet" href="../css/skin/color-1.css" class="alternate-style" title="color-1" disabled/>
-    <link rel="stylesheet" href="../css/skin/color-2.css" class="alternate-style" title="color-2" disabled/>
-    <link rel="stylesheet" href="../css/skin/color-3.css" class="alternate-style" title="color-3" disabled/>
-    <link rel="stylesheet" href="../css/skin/color-4.css" class="alternate-style" title="color-4" disabled/>
-    <link rel="stylesheet" href="../css/skin/color-5.css" class="alternate-style" title="color-5" disabled/>
+    <link rel="stylesheet" href="./css/skin/color-1.css" class="alternate-style" title="color-1" disabled/>
+    <link rel="stylesheet" href="./css/skin/color-2.css" class="alternate-style" title="color-2" disabled/>
+    <link rel="stylesheet" href="./css/skin/color-3.css" class="alternate-style" title="color-3" disabled/>
+    <link rel="stylesheet" href="./css/skin/color-4.css" class="alternate-style" title="color-4" disabled/>
+    <link rel="stylesheet" href="./css/skin/color-5.css" class="alternate-style" title="color-5" disabled/>
     
     <link rel="stylesheet" href="../css/style-switcher.css" />
   </head>
@@ -71,16 +71,16 @@
             <li>
               <a href="#contact"><i class="fa fa-comments"></i>Contact</a>
             </li>
-            
-          </ul>
-        </div>
-<ul>
-<li>
-               <img src="../photos/github.jpg"
+            <li>
+               <img src="./photos/github.jpg"
                  alt="GitHub"
                  class="github-icon"
                  onclick="goToGitHub()">
-            </li></ul>
+            </li>
+            
+          </ul>
+        </div>
+ 
       </div>
       <!-- A-Side End -->
 
@@ -110,7 +110,8 @@
 
                <div class="home-img padd-15">
                 <a href="file.html" target="_blank">
-                  <img src="../photos/vinay.jpg" alt="vinay.jpg" />
+                  <!-- <img src="../photos/vinay.jpg" alt="vinay.jpg" /> -->
+                  <img src="" alt="photo.jpg" />
                 </a>
               </div>
               
@@ -748,7 +749,8 @@ function sendMails() {
         });
       })();
       </script>
-  <script>
+
+  <!-- <script>
 
     function goToGitHub(){
     const psw = prompt("Enter Your Password For Go To GitHub:");
@@ -760,7 +762,7 @@ function sendMails() {
         alert("Incorrect password!");
       }
     }
-  </script> 
+  </script>  -->
 
      
   
