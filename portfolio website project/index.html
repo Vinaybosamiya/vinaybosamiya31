@@ -767,9 +767,227 @@ function sendMails() {
 
 
 
+<!-- ====================== Add Birthday Animation for myself ======================  -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<div id="birthday-container" style="display: none;">
+    
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="emoji-container left" id="cont-left">
+        <div class="emoji-inner" id="inner-left">
+            <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Party%20Popper.png" 
+                 alt="Party Popper" class="emoji-img">
+        </div>
+    </div>
+
+    <div class="emoji-container right" id="cont-right">
+        <div class="emoji-inner" id="inner-right">
+            <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Party%20Popper.png" 
+                 alt="Party Popper" class="emoji-img flipped">
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /* Main Overlay */
+    #birthday-container {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 10000;
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 1; 
+        transition: opacity 1.5s ease-out;
+    }
+
+    /* --- CONTAINERS (Handle Movement Entry/Exit) --- */
+    .emoji-container {
+        position: fixed;
+        width: 120px; height: 120px;
+        z-index: 3;
+        opacity: 0; /* Hidden until JS adds class */
+    }
+    
+    /* Start Positions (Off Screen Footer) */
+    .emoji-container.left { bottom: 30px; left: 30px; }
+    .emoji-container.right { bottom: 30px; right: 30px; }
+
+    /* --- INNER WRAPPERS (Handle Shake) --- */
+    .emoji-inner {
+        width: 100%; height: 100%;
+        animation: floatEmoji 3s ease-in-out infinite;
+    }
+
+    .emoji-img {
+        width: 100%; height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
+    }
+    .flipped { transform: scaleX(-1); }
+
+    /* --- ANIMATION CLASSES --- */
+
+    /* 1. ENTRY: Cross Come (Diagonal) */
+    .enter-left { animation: slideCrossLeft 0.8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards; }
+    .enter-right { animation: slideCrossRight 0.8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards; }
+
+    /* 2. BURST: Shake (Inner only) */
+    .pop-anim { animation: shakeAndPop 0.4s forwards; }
+
+    /* 3. EXIT: Cross Back (Diagonal) */
+    .exit-left { animation: goBackLeft 1.5s ease-in forwards !important; }
+    .exit-right { animation: goBackRight 1.5s ease-in forwards !important; }
+
+    .fade-out { opacity: 0 !important; }
+
+    /* --- KEYFRAMES --- */
+
+    /* Enter from Bottom-Left Diagonal */
+    @keyframes slideCrossLeft {
+        0% { transform: translate(-150px, 150px); opacity: 0; }
+        100% { transform: translate(0, 0); opacity: 1; }
+    }
+    /* Enter from Bottom-Right Diagonal */
+    @keyframes slideCrossRight {
+        0% { transform: translate(150px, 150px); opacity: 0; }
+        100% { transform: translate(0, 0); opacity: 1; }
+    }
+
+    /* Go Back to Bottom-Left Diagonal */
+    @keyframes goBackLeft {
+        0% { transform: translate(0, 0); opacity: 1; }
+        100% { transform: translate(-150px, 150px); opacity: 0; }
+    }
+    /* Go Back to Bottom-Right Diagonal */
+    @keyframes goBackRight {
+        0% { transform: translate(0, 0); opacity: 1; }
+        100% { transform: translate(150px, 150px); opacity: 0; }
+    }
+
+    @keyframes floatEmoji {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+    @keyframes shakeAndPop {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.9) rotate(-15deg); }
+        80% { transform: scale(1.1) rotate(5deg); }
+        100% { transform: scale(1) rotate(0deg); }
+    }
+
+    @media (max-width: 768px) {
+        .emoji-container { width: 80px; height: 80px; }
+        .emoji-container.left { left: 15px; bottom: 20px; }
+        .emoji-container.right { right: 15px; bottom: 20px; }
+    }
+</style>
+<script>
+    // --- CONFIGURATION ---
+    const mySettings = {
+        // Option 1: Set to 'true' to run immediately for everyone
+        runForEveryone: false, 
+
+        // Option 2: Set your Specific Date (Year is no longer needed)
+        date: 31,        // Day
+        month: 12,      // Month
+    };
+    // ---------------------
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const today = new Date();
+        
+        const forceRun = mySettings.runForEveryone;
+        
+        // LOGIC CHANGED: We now only check Date and Month. 
+        // We removed the Year check so it works every year automatically.
+        const isDateMatch = (today.getDate() === mySettings.date) && 
+                            (today.getMonth() === (mySettings.month - 1));
+
+        if (forceRun || isDateMatch) {
+            
+            const container = document.getElementById('birthday-container');
+            container.style.display = 'block';
+
+            const contLeft = document.getElementById('cont-left');
+            const contRight = document.getElementById('cont-right');
+            const innerLeft = document.getElementById('inner-left');
+            const innerRight = document.getElementById('inner-right');
+            const canvasEl = document.getElementById('confetti-canvas');
+
+            // 1. START ENTRY (Cross Come) - 0s
+            contLeft.classList.add('enter-left');
+            contRight.classList.add('enter-right');
+
+            const myConfetti = confetti.create(canvasEl, { resize: true, useWorker: true });
+
+            // 2. TRIGGER BURST - 1.0s
+            setTimeout(() => {
+                innerLeft.classList.add('pop-anim');
+                innerRight.classList.add('pop-anim');
+
+                fireBurst(contLeft, myConfetti);
+                fireBurst(contRight, myConfetti);
+            }, 1000); 
+
+            // 3. START EXIT (Cross Go Back) - 7.0s
+            setTimeout(() => {
+                // Fade out confetti
+                canvasEl.classList.add('fade-out');
+                
+                // Remove Entry classes
+                contLeft.classList.remove('enter-left');
+                contRight.classList.remove('enter-right');
+
+                // Trigger Reflow (Reset Animation)
+                void contLeft.offsetWidth; 
+
+                // Add Exit classes (Go Back)
+                contLeft.classList.add('exit-left');
+                contRight.classList.add('exit-right');
+
+            }, 7000); 
+
+            // 4. REMOVE FROM DOM - 9.0s
+            setTimeout(() => {
+                container.remove();
+            }, 9000);
+        }
+    });
+
+    function fireBurst(element, confettiInstance) {
+        const rect = element.getBoundingClientRect();
+        const centerX = (rect.left + rect.width / 2) / window.innerWidth;
+        const centerY = (rect.top + rect.height / 2) / window.innerHeight;
+        
+        const angle = centerX < 0.5 ? 60 : 120; 
+
+        confettiInstance({
+            particleCount: 150, 
+            spread: 80,
+            origin: { x: centerX, y: centerY },
+            angle: angle,
+            colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#800080'],
+            startVelocity: 60,
+            gravity: 0.5,
+            ticks: 600, 
+            scalar: 1.2,
+            disableForReducedMotion: true
+        });
+    }
+</script>
+
 
 </body>
 </html>
+
 
 
 
