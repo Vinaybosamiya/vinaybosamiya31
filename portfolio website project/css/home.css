@@ -251,7 +251,7 @@ h3.my-profession{
     right: 20px;
     bottom: 20px;
     /* right: 80px; */
-    bottom: -40px;
+    /* bottom: -40px; */
     border-bottom: 10px solid var(--skin-color);
     border-right: 10px solid var(--skin-color);
 }.home-img::before{
@@ -323,4 +323,5 @@ h3.my-profession{
         /* Do NOT change background-position here on mobile */
     }
 }
+
 
