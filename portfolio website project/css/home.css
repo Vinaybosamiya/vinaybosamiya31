@@ -249,6 +249,7 @@ h3.my-profession{
     height: 80px;
     width: 80px;
     right: 20px;
+    bottom: 20px;
     /* right: 80px; */
     bottom: -40px;
     border-bottom: 10px solid var(--skin-color);
@@ -322,3 +323,4 @@ h3.my-profession{
         /* Do NOT change background-position here on mobile */
     }
 }
+
